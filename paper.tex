@@ -1,0 +1,850 @@
+\documentclass[11pt,a4paper]{article}
+
+% ---------- Кодировки и язык ----------
+\usepackage[T2A]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[russian,english]{babel}
+
+% ---------- Математика ----------
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{bm}
+
+% ---------- Оформление ----------
+\usepackage[margin=2.5cm]{geometry}
+\usepackage[protrusion=true,expansion=false]{microtype}
+\usepackage{booktabs}
+\usepackage{graphicx}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage{listings}
+\usepackage{tikz}
+\usepackage[colorlinks=true,linkcolor=blue!50!black,citecolor=green!50!black,urlcolor=blue!60!black]{hyperref}
+
+% ---------- Теоремы ----------
+\theoremstyle{plain}
+\newtheorem{theorem}{Теорема}[section]
+\newtheorem{proposition}[theorem]{Предложение}
+\newtheorem{lemma}[theorem]{Лемма}
+\newtheorem{hypothesis}{Гипотеза}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Определение}
+\newtheorem{conjecture}[theorem]{Конъектура}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Замечание}
+
+% ---------- Операторы и сокращения ----------
+\DeclareMathOperator{\vol}{vol}
+\DeclareMathOperator*{\argmin}{arg\,min}
+\newcommand{\core}{\mathrm{core}}
+\newcommand{\giant}{\mathrm{giant}}
+\newcommand{\periph}{\mathrm{periph}}
+\newcommand{\modu}{\mathrm{mod}}
+\newcommand{\Ph}{\varphi}
+\newcommand{\dmin}{d_{\min}}
+\newcommand{\dmax}{d_{\max}}
+\newcommand{\dbar}{\bar d}
+\newcommand{\lamtwo}{\lambda_2}
+\newcommand{\lamthree}{\lambda_3}
+\newcommand{\Gcore}{G_{\core}}
+\newcommand{\Ggiant}{G_{\giant}}
+\newcommand{\Gtwo}{G_{2\core}}
+\newcommand{\polylog}{\operatorname{polylog}}
+
+% ---------- Листинги ----------
+\lstset{
+  basicstyle=\ttfamily\small,
+  keywordstyle=\color{blue!60!black},
+  commentstyle=\color{green!45!black},
+  stringstyle=\color{red!60!black},
+  showstringspaces=false,
+  breaklines=true,
+  frame=single,
+  extendedchars=true,
+  inputencoding=utf8,
+  language=Python
+}
+
+% =====================================================================
+\title{\bfseries Спектральная щель нормализованного лапласиана\\
+в разреженных случайных графах с тяжёлохвостыми степенями:\\
+асимптотика, bottleneck-структуры и связь с модульностью\\
+биологических сетей}
+
+\author{Кузьмин Леонид Леонидович\\[2pt]
+\small магистр\\
+\small\href{mailto:kuzminll@vk.com}{kuzminll@vk.com}}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+\noindent
+Исследуется вторая собственная величина $\lamtwo$ нормализованного лапласиана
+$L=I-D^{-1/2}AD^{-1/2}$ в разреженных случайных графах с тяжёлохвостым
+распределением степеней $P(D=k)\sim Ck^{-\gamma}$ в режиме
+$\dbar_{\min}=O(1)$, не покрытом классической теорией Chung--Lu--Vu.
+Показывается, что одной зависимости от $\gamma$ недостаточно: порядок $\lamtwo$
+определяется конкуренцией трёх масштабов --- низкостепенной периферии,
+модульных разрезов и хабов/ядра. Вводится пара диагностических параметров
+$(\Delta,\rho_*)$, где $\Delta=\Ph_{\modu}/\Ph_{\periph}$ --- отношение
+модульного и периферийного conductance, а $\rho_*$ --- нормированный объём
+минимального разреза. Предлагается фазовая диаграмма режимов малой
+спектральной щели и численная схема (spectral sweep cut) для её построения.
+Обсуждается осторожная биологическая интерпретация: малое $\lamtwo$ само по
+себе не идентифицирует функциональную модульность.
+\end{abstract}
+
+\tableofcontents
+
+% =====================================================================
+\section{Мотивация и исходная постановка}
+\label{sec:motivation}
+
+\textbf{Исходная идея:} получить точную асимптотику второй собственной величины
+$\lamtwo$ нормализованного лапласиана для разреженных случайных графов с
+тяжёлохвостым распределением степеней $P(D=k)\sim Ck^{-\gamma}$ в режиме
+$\dbar_{\min}=O(1)$, не покрытом теоремой Chung--Lu--Vu.
+
+\textbf{Проблема исходной постановки.} Она слишком широкая и в части параметров
+тривиально неверна. В разреженном режиме $\lamtwo$ может быть нулём из-за
+несвязности, а после удаления мелких компонент --- иметь совершенно другой
+порядок. Это не техническая мелочь, а центральная часть исследования.
+
+\textbf{Корректировка.} Вместо одной формулы $\lamtwo\sim f(\gamma,\dbar,n)$
+нужно строить \emph{фазовую диаграмму порядка $\lamtwo$} в зависимости от
+\begin{equation}
+\gamma,\qquad \dmin,\qquad \dmax,\qquad \dbar,\qquad n,
+\end{equation}
+и, что особенно важно, \emph{структуры низкостепенного хвоста}.
+
+% =====================================================================
+\section{Что уже известно из литературы}
+\label{sec:known}
+
+\begin{itemize}[leftmargin=*]
+\item \textbf{Chung--Lu--Vu \cite{ChungLuVu2003}.} Для случайных графов с
+заданными ожидаемыми степенями при $\dbar_{\min}\gg\ln^2 n$ спектр
+нормализованного лапласиана концентрируется около предсказываемого поведения;
+результаты включают power-law графы. Оценка щели:
+\begin{equation}
+\lambda(G)\;\ge\;1-4\,\dbar^{-1/2}-\dbar_{\min}^{-1}\ln^2 n .
+\label{eq:CLV}
+\end{equation}
+При $\dbar_{\min}\le\ln^2 n$ оценка \eqref{eq:CLV} становится бессмысленной.
+
+\item \textbf{Coja-Oghlan--Lanka \cite{CojaLanka2009}.} Для разреженного режима
+$\dbar_{\min}=O(1)$ показано, что существует большой core, у которого
+spectral gap нормализованного лапласиана остаётся отделённой от нуля:
+\begin{equation}
+\lamtwo(L_{\core})\;\ge\;1-c_0\,\dbar_{\min}^{-1/2}
+\label{eq:COL}
+\end{equation}
+с высокой вероятностью. Речь идёт именно о \emph{core}, а не обо всём исходном
+графе.
+
+\item \textbf{Для $G(n,p)$ при ограниченной средней степени $d$.} Spectral gap
+всего графа нормализованного лапласиана имеет $\lamtwo=o(1)$, хотя
+giant/core может иметь gap порядка единицы.
+\end{itemize}
+
+\begin{remark}[ключевой вывод]
+\begin{equation}
+\boxed{\;\lamtwo(G)\;\not\sim\;\lamtwo(\core(G)).\;}
+\end{equation}
+\end{remark}
+
+% =====================================================================
+\section{Почему одного $\gamma$ недостаточно}
+\label{sec:gamma}
+
+Пусть $P(D=k)\sim Ck^{-\gamma}$. Это определяет хвост при больших $k$. Но
+$\lamtwo$ очень чувствительна к \emph{маленьким степеням}.
+
+\textbf{Контрпример.} Две последовательности с одинаковым $\gamma=2.5$:
+\begin{itemize}[leftmargin=*]
+\item модель A: $P(D=1)>0$;
+\item модель B: $P(D=1)=0,\;P(D\ge 2)=1$.
+\end{itemize}
+У них одинаковый асимптотический хвост, но совершенно разное поведение
+$\lamtwo$. В первой модели появляются листья и конечные компоненты; во второй
+граф может оказаться существенно более связным.
+\begin{equation}
+\boxed{\;\gamma\ \text{не определяет}\ \lamtwo.\;}
+\end{equation}
+
+\textbf{Жёсткий контрпример.} Конфигурационная модель с $P(D=1)=p_1>0$. При
+ограниченной средней степени такие графы естественно содержат мелкие
+компоненты и dangling structures. Если граф несвязен, то $\lamtwo(L)=0$.
+Следовательно, никакая нетривиальная формула вида $\lamtwo\sim f(\gamma)>0$
+для всего графа невозможна.
+
+% =====================================================================
+\section{Три спектральные щели}
+\label{sec:three}
+
+\begin{table}[h]
+\centering
+\begin{tabular}{llp{7.2cm}}
+\toprule
+Объект & Обозначение & Что характеризует \\
+\midrule
+Полный граф & $\lamtwo(G)$ & Глобальная связность; $\lamtwo=0$ при несвязности \\
+Giant component & $\lamtwo(\Ggiant)$ & Содержательная величина для sparse heavy-tailed сетей \\
+2-core & $\lamtwo(\Gtwo)$ & Ненулевая asymptotic lower bound даже при $\dbar_{\min}=O(1)$ \\
+\bottomrule
+\end{tabular}
+\caption{Три уровня спектральной щели.}
+\end{table}
+
+\begin{hypothesis}[порядок щелей]
+\begin{equation}
+\boxed{\;\lamtwo(G)\;\ll\;\lamtwo(\Ggiant)\;\lesssim\;\lamtwo(\Gtwo).\;}
+\end{equation}
+\end{hypothesis}
+
+% =====================================================================
+\section{Три механизма возникновения малой $\lamtwo$}
+\label{sec:mechanisms}
+
+\begin{enumerate}[leftmargin=*]
+\item \textbf{Мелкие компоненты:} $\lamtwo(G)=0$.
+\item \textbf{Dangling trees:} длинные «усы» создают малый conductance; по
+Чигеру $\lamtwo\le 2\Ph$, поэтому достаточно длинный тонкий отросток может
+сделать $\lamtwo\to 0$.
+\item \textbf{Настоящая модульность:} две большие dense communities с малым
+cut дают $\Ph\ll 1$ и $\lamtwo\ll 1$.
+\end{enumerate}
+
+\textbf{Ключевое разделение:}
+\begin{equation}
+\text{малое }\lamtwo\ \Longrightarrow\ \text{существует слабый глобальный cut},
+\end{equation}
+но
+\begin{equation}
+\text{малое }\lamtwo\ \not\Longrightarrow\ \text{биологическая модульность}.
+\end{equation}
+Нужно отделить \emph{community bottleneck} от \emph{peripheral bottleneck}.
+
+% =====================================================================
+\section{Формализация двух типов bottleneck}
+\label{sec:bottleneck}
+
+Пусть
+\begin{equation}
+\vol(S)=\sum_{v\in S}d_v,\qquad
+\Ph(S)=\frac{|\partial S|}{\vol(S)} .
+\end{equation}
+
+\begin{definition}[периферийный bottleneck]
+\begin{equation}
+\Ph_{\periph}(G)=
+\min_{\substack{S\subset V\\ 0<\vol(S)\le\varepsilon\,\vol(V)}}\Ph(S),
+\end{equation}
+где $\varepsilon\ll 1$, например $\varepsilon=0.05$.
+\end{definition}
+
+\begin{definition}[модульный bottleneck]
+\begin{equation}
+\Ph_{\modu}(G)=
+\min_{\substack{S\subset V\\ \varepsilon\,\vol(V)\le\vol(S)\le\frac12\vol(V)}}\Ph(S).
+\end{equation}
+\end{definition}
+
+Тогда
+\begin{equation}
+\Ph(G)=\min\{\Ph_{\periph},\Ph_{\modu}\}.
+\end{equation}
+Через неравенство Чигера \cite{Cheeger1970,KannanVempalaVetta2004}:
+\begin{equation}
+\frac{\Ph(G)^2}{2}\;\le\;\lamtwo\;\le\;2\,\Ph(G).
+\label{eq:cheeger}
+\end{equation}
+То есть мы получаем не «разложение $\lamtwo$», а \emph{классификацию механизма,
+создающего глобальный bottleneck}.
+
+% =====================================================================
+\section{Диагностические параметры}
+\label{sec:diagnostics}
+
+\begin{definition}[параметр конкуренции]
+\begin{equation}
+\boxed{\;\Delta(G)=\frac{\Ph_{\modu}(G)}{\Ph_{\periph}(G)}\;}
+\end{equation}
+\end{definition}
+с интерпретацией:
+\begin{itemize}[leftmargin=*]
+\item $\Delta\gg 1$ --- периферийный bottleneck дешевле;
+\item $\Delta\ll 1$ --- модульный bottleneck дешевле;
+\item $\Delta\approx 1$ --- переходный режим.
+\end{itemize}
+
+Для устойчивости численных оценок использовать
+\begin{equation}
+\log\Delta=\log\Ph_{\modu}-\log\Ph_{\periph}.
+\end{equation}
+
+\begin{definition}[размер минимального спектрального cut]
+\begin{equation}
+\rho(S)=\frac{\vol(S)}{\vol(V)},\qquad
+\rho_*=\rho(S_*),\qquad
+S_*=\argmin_{S}\Ph(S).
+\end{equation}
+\end{definition}
+Интерпретация:
+\begin{itemize}[leftmargin=*]
+\item $\rho_*=O(n^{-1})$ --- маленькая локальная структура;
+\item $\rho_*=O(1)$ --- макроскопическое разделение графа.
+\end{itemize}
+
+\textbf{Диагностическая плоскость:} $(\log\Delta,\rho_*)$.
+
+\textbf{Спектральный cut против комбинаторного.}
+\begin{equation}
+\rho_2=\frac{\vol(\{v:f_2(v)>0\})}{\vol(V)} .
+\end{equation}
+Если $\rho_2\approx\rho_*$ --- спектральный cut совпадает с комбинаторным.
+Если нет --- $\lamtwo$ контролируется не минимальным cut'ом, а «усреднённым»
+поведением.
+
+\textbf{Множественные bottleneck'ы.} Разность $\lamthree-\lamtwo$: малая
+разность означает несколько конкурирующих cut'ов с похожим conductance.
+
+% =====================================================================
+\section{Фазовая диаграмма (гипотетическая)}
+\label{sec:phase}
+
+\begin{figure}[h]
+\centering
+\begin{tikzpicture}[scale=1.15]
+\draw[->,thick] (-0.2,0) -- (6.2,0) node[right] {$\log\Delta$};
+\draw[->,thick] (0,-0.2) -- (0,4.2) node[above] {$\rho_*$};
+\draw[dashed,gray] (0,2.1) -- (6.0,2.1);
+\node[align=center] at (1.5,3.2) {\textsc{Modular}};
+\node[align=center] at (4.4,3.2) {\textsc{Mixed}};
+\node[align=center] at (1.5,0.9) {\textsc{Peripheral}};
+\node[align=center] at (4.4,0.9) {\textsc{Core-dominated}};
+\node[gray,anchor=north east] at (6.0,2.1) {\small макроскопический cut};
+\node[gray,anchor=south east] at (6.0,2.1) {\small локальный cut};
+\end{tikzpicture}
+\caption{Гипотетическая фазовая диаграмма в координатах $(\log\Delta,\rho_*)$.}
+\label{fig:phase}
+\end{figure}
+
+% =====================================================================
+\section{Гипотезы}
+\label{sec:hypotheses}
+
+\begin{hypothesis}[H1]
+Для sparse heavy-tailed configuration model с $P(D=k)\sim k^{-\gamma}$
+асимптотика $\lamtwo(G)$ определяется не только $\gamma$, но конкуренцией трёх
+масштабов:
+\begin{equation}
+\text{low-degree structures}\ \leftrightarrow\
+\text{community cuts}\ \leftrightarrow\
+\text{hub/core structure}.
+\end{equation}
+\end{hypothesis}
+
+\begin{hypothesis}[H2]
+Для полного графа при наличии положительной доли низкостепенных вершин
+$\lamtwo(G)\to 0$ может быть тривиальным следствием периферии/несвязности.
+\end{hypothesis}
+
+\begin{hypothesis}[H3]
+После перехода к giant component или 2-core $\lamtwo(\Gtwo)$ может оставаться
+отделённой от нуля в режиме, где классическая теория Chung--Lu--Vu
+\cite{ChungLuVu2003} не применима.
+\end{hypothesis}
+
+\begin{hypothesis}[H4]
+Если дополнительно наложить planted modular structure, то появляется другой
+масштаб:
+\begin{equation}
+\lamtwo\asymp\Ph_{\mathrm{module}}
+\end{equation}
+с точностью до квадратов/линейных факторов, задаваемых неравенством Чигера
+\eqref{eq:cheeger}.
+\end{hypothesis}
+
+% =====================================================================
+\section{Что будет новым результатом}
+\label{sec:result}
+
+\textbf{Теорема (целевая):}
+\begin{equation}
+\lamtwo(G_n)=\Theta\bigl(f(n,\gamma)\bigr)
+\end{equation}
+в определённом режиме. Отдельно:
+\begin{equation}
+\lamtwo(G_n^{2\core})=\Theta\bigl(g(\gamma,\dbar)\bigr)
+\end{equation}
+при других условиях. Если точную асимптотику получить не удастся,
+\begin{equation}
+c\,f(n,\gamma)\;\le\;\lamtwo\;\le\;C\,f(n,\gamma)
+\end{equation}
+--- уже полноценный результат.
+
+% =====================================================================
+\section{Математическая постановка}
+\label{sec:setup}
+
+Конфигурационная модель \cite{BenderCanfield1978,MolloyReed1995,MolloyReed1998}
+с детерминированной последовательностью $d_1,\dots,d_n$:
+\begin{equation}
+\sum_i d_i\equiv 0 \pmod 2,\qquad
+N_k(n)=\#\{i:d_i=k\}\sim c\,n\,k^{-\gamma}.
+\end{equation}
+Варьируем:
+\begin{equation}
+\dmin=1,2,3,\dots,\qquad
+\dmax\sim n^{1/(\gamma-1)}
+\end{equation}
+либо controlled cutoff.
+
+\textbf{Методы:} message-passing подходы для произвольных degree distributions;
+spectral methods для конфигурационных моделей
+\cite{DorogovtsevGoltsevMendesSamukhin2003,Soderberg2002,BordenaveLelargeMassoulie2018}.
+
+% =====================================================================
+\section{Экспериментальная часть}
+\label{sec:experiments}
+
+Для каждого $(n,\gamma,\dmin)$ генерируем $\approx 100$ реализаций при
+$n=10^3,10^4,10^5,\dots$. Для каждой реализации считаем
+\begin{align}
+&\lamtwo(G),\quad \lamtwo(\Ggiant),\quad \lamtwo(\Gtwo),\\
+&\Ph(G),\quad \Ph(\Ggiant),\quad \Ph(\Gtwo),\\
+&\dmax,\quad \dbar,\quad N_1,\quad N_2 .
+\end{align}
+
+Scaling: строим $\log\lamtwo$ против $\log n$. Если $\lamtwo\sim n^{-\alpha}$,
+то
+\begin{equation}
+\log\lamtwo=-\alpha\log n+C,
+\end{equation}
+и $\alpha$ оценивается статистически.
+
+\begin{table}[h]
+\centering
+\begin{tabular}{lp{8.5cm}}
+\toprule
+Ансамбль & Что проверяем \\
+\midrule
+Power-law $\dmin=1$ & периферия \\
+Power-law $\dmin=2$ & цепочки / 2-core \\
+Power-law $\dmin=3$ & экспандероподобный core \\
+Power-law $+$ planted communities & настоящая модульность \\
+\bottomrule
+\end{tabular}
+\caption{Четыре экспериментальных ансамбля.}
+\end{table}
+
+% =====================================================================
+\section{Алгоритм вычисления $\Ph_{\periph}$ и $\Ph_{\modu}$}
+\label{sec:algorithm}
+
+\subsection*{Подход 1: спектральная аппроксимация через sweep cut}
+
+\begin{enumerate}[leftmargin=*]
+\item Вычислить второй собственный вектор $f_2$ нормализованного лапласиана
+$L=I-D^{-1/2}AD^{-1/2}$.
+\item Отсортировать вершины по $f_2(v)$: $v_1,\dots,v_n$.
+\item Sweep cut: для каждого $k=1,\dots,n-1$ рассмотреть
+$S_k=\{v_1,\dots,v_k\}$ и вычислить $\Ph(S_k)$.
+\item Найти минимумы:
+\begin{align}
+\Ph_{\periph}^{\mathrm{spec}}
+&=\min\{\Ph(S_k):\vol(S_k)\le\varepsilon\vol(V)\},\\
+\Ph_{\modu}^{\mathrm{spec}}
+&=\min\{\Ph(S_k):\varepsilon\vol(V)\le\vol(S_k)\le\tfrac12\vol(V)\}.
+\end{align}
+\item Записать соответствующие $\rho_*$.
+\end{enumerate}
+
+\textbf{Сложность:} $O(m\cdot\mathrm{iter}+n\log n)$.
+
+\subsection*{Подход 2: local Cheeger с seed-множествами}
+
+\begin{enumerate}[leftmargin=*]
+\item Выбрать seed-множества (низкостепенные вершины для периферии; хабы или
+случайные вершины для модульности).
+\item Для каждого seed применить local clustering (Andersen--Chung--Lang,
+PageRank-based) \cite{AndersenChungLang2006}.
+\item Собрать все найденные множества $S$, вычислить $\Ph(S)$.
+\item Отфильтровать по объёму.
+\end{enumerate}
+
+\textbf{Сложность:} $O(nm\log n/\Ph^2)$.
+
+\textbf{Рекомендация:} начать со спектрального sweep cut. Если
+$\rho_2\ne\rho_*$, добавить local clustering для проверки.
+
+% =====================================================================
+\section{Псевдокод sweep cut}
+\label{sec:pseudocode}
+
+\begin{lstlisting}
+import numpy as np
+from scipy.sparse.linalg import eigsh
+
+def spectral_diagnostics(L, degrees, adj, eps=0.05):
+    n = len(degrees)
+    vol_V = degrees.sum()
+
+    vals, vecs = eigsh(L, k=2, which='SM')
+    lambda2 = vals[1]
+    f2 = vecs[:, 1]
+
+    order = np.argsort(f2)
+
+    vol_S = 0
+    cut_size = 0
+    in_S = np.zeros(n, dtype=bool)
+
+    phi_periph = np.inf
+    phi_mod = np.inf
+    rho_periph = None
+    rho_mod = None
+
+    for k in range(n - 1):
+        v = order[k]
+        in_S[v] = True
+        vol_S += degrees[v]
+
+        for u in adj[v]:
+            if in_S[u]:
+                cut_size -= 1
+            else:
+                cut_size += 1
+
+        if vol_S == 0:
+            continue
+        phi = cut_size / vol_S
+
+        if vol_S <= eps * vol_V:
+            if phi < phi_periph:
+                phi_periph = phi
+                rho_periph = vol_S / vol_V
+        elif vol_S <= 0.5 * vol_V:
+            if phi < phi_mod:
+                phi_mod = phi
+                rho_mod = vol_S / vol_V
+
+    log_Delta = np.log(phi_mod) - np.log(phi_periph) if phi_periph > 0 else np.inf
+
+    return {'lambda2': lambda2, 'phi_periph': phi_periph,
+            'phi_mod': phi_mod, 'rho_periph': rho_periph,
+            'rho_mod': rho_mod, 'log_Delta': log_Delta}
+\end{lstlisting}
+
+Реализация в репозитории: \texttt{src/diagnostics.py}.
+
+% =====================================================================
+\section{Биологическая интерпретация}
+\label{sec:bio}
+
+\textbf{Осторожность со словом «устойчивость».} $\lamtwo$ характеризует
+глобальную связность/expansion и через Чигера связан с bottleneck'ами. Для
+random walk $P=D^{-1}A$ и $\mu_2=1-\lamtwo$. Малый $\lamtwo$ соответствует
+медленной релаксации случайного блуждания. Это можно интерпретировать как
+\emph{структурную интегрированность} сети, но не автоматически как
+биологическую robustness.
+
+\textbf{Нужно определить, какую именно устойчивость изучаем:}
+\begin{itemize}[leftmargin=*]
+\item устойчивость к удалению узлов;
+\item устойчивость к удалению рёбер;
+\item сохранение giant component;
+\item устойчивость потоков/диффузии;
+\item устойчивость функциональных модулей.
+\end{itemize}
+
+\textbf{Масштаб функционального разделения через $\rho_*$:}
+\begin{itemize}[leftmargin=*]
+\item $\rho_*\approx 0.5$ --- две большие половины (два полушария, два
+метаболических режима);
+\item $\rho_*\approx 0.1$ --- маленький модуль, отделённый от остального;
+\item $\rho_*\approx n^{-1}$ --- один узел или маленькая группа.
+\end{itemize}
+
+\begin{quote}
+\itshape
+В биологических сетях малая $\lamtwo$ сама по себе не идентифицирует
+функциональную модульность. Предлагаемый анализ дополнительно определяет
+масштаб минимального bottleneck и позволяет различать локальную периферию и
+макроскопическое разделение сети.
+\end{quote}
+
+% =====================================================================
+\section{Связь с хабами}
+\label{sec:hubs}
+
+Тяжёлый хвост создаёт $\dmax\gg\dbar$. Хабы сильно влияют на спектр adjacency
+matrix: необычно высокие степени могут создавать изолированные собственные
+значения с локализованными собственными векторами около хабов. Но это
+\emph{не означает}, что хабы обязательно увеличивают $\lamtwo$.
+
+\textbf{Важное различие:}
+\begin{equation}
+\lambda_{\max}(A)\qquad\text{и}\qquad\lamtwo(L)
+\end{equation}
+чувствуют разные свойства сети. Хаб может резко изменить верхнюю часть
+спектра, практически не решив глобальный bottleneck.
+
+% =====================================================================
+\section{Четырёхуровневая структура проекта}
+\label{sec:levels}
+
+\begin{description}[leftmargin=*]
+\item[Уровень I --- математическая модель.] Configuration model:
+$(d_1,\dots,d_n)$, $N_k(n)\sim c\,n\,k^{-\gamma}$. Варьируем
+$\gamma,\dmin,\dmax,n$.
+\item[Уровень II --- спектральная асимптотика.] Исследуем $\lamtwo(G)$,
+$\lamtwo(\Ggiant)$, $\lamtwo(\Gtwo)$.
+\item[Уровень III --- механизм возникновения щели.] Измеряем
+$\Ph_{\periph},\Ph_{\modu},\Delta,\rho_*$. Проверяем
+$\lamtwo\leftrightarrow\min(\Ph_{\periph},\Ph_{\modu})$.
+\item[Уровень IV --- биологическая интерпретация.] Проверяем, соответствует ли
+наблюдаемая малая щель peripheral sparsity или macroscopic modular
+organization. И только после этого обсуждаем implications для
+robustness / functional integration.
+\end{description}
+
+% =====================================================================
+\section{Главный исследовательский вопрос}
+\label{sec:question}
+
+\begin{quote}
+Как низкостепенная периферия и тяжёлый хвост распределения степеней совместно
+определяют асимптотику второй собственной величины нормализованного
+лапласиана в разреженных случайных графах, и как с помощью пары
+$(\Delta,\rho_*)$ различить уменьшение $\lamtwo$, вызванное периферийным
+bottleneck, от уменьшения, вызванного макроскопической модульностью?
+\end{quote}
+
+Потенциальный результат --- не просто формула, а \emph{теория режимов
+возникновения малой спектральной щели}.
+
+% =====================================================================
+\section{Открытые вопросы и риски}
+\label{sec:open}
+
+\begin{itemize}[leftmargin=*]
+\item \textbf{Вычислимость $\Ph$:} точное вычисление NP-трудно; нужна явная
+аппроксимация (sweep cut или local clustering).
+\item \textbf{Устойчивость $\Delta$:} использовать $\log\Delta$.
+\item \textbf{Связь с собственным вектором:} сравнить $\rho_2$ и $\rho_*$.
+\item \textbf{Множественные bottleneck'ы:} добавить $\lamthree-\lamtwo$.
+\item \textbf{2-core против giant component:} уточнить, когда совпадают, когда
+различаются.
+\item \textbf{Размазанная периферия:} если low-degree узлы не компактны,
+$\Ph_{\periph}$ может быть неинформативен; проверить численно.
+\item \textbf{Аналитическая часть:} может оказаться неподъёмной; план B ---
+численные гипотезы $+$ частичные оценки.
+\item \textbf{Биологическая интерпретация:} требует осторожности; не называть
+$\lamtwo$ мерой «устойчивости» без уточнения.
+\end{itemize}
+
+% =====================================================================
+\section{План дальнейших действий}
+\label{sec:plan}
+
+\begin{enumerate}[leftmargin=*]
+\item Реализовать генерацию графов для четырёх ансамблей.
+\item Реализовать sweep cut для $\Ph_{\periph},\Ph_{\modu},\Delta,\rho_*$.
+\item Провести численные эксперименты для $n=10^3,10^4,10^5$.
+\item Построить фазовую диаграмму в $(\log\Delta,\rho_*)$.
+\item Проверить гипотезу
+$\lamtwo\leftrightarrow\min(\Ph_{\periph},\Ph_{\modu})$.
+\item Сформулировать эмпирические гипотезы о порядке $\lamtwo$ в каждом режиме.
+\item Попробовать аналитический вывод для простейшего случая
+(смешанно-регулярный граф, два типа степеней).
+\item Оформить результаты как препринт (arXiv: math.SP, math.CO, q-bio.MN).
+\end{enumerate}
+
+% =====================================================================
+\appendix
+\section{Численная реализация}
+\label{app:code}
+
+Код проекта:
+\begin{center}
+\begin{tabular}{ll}
+\toprule
+Файл & Назначение \\
+\midrule
+\texttt{run\_experiments.py} & оркестрация 4 ансамблей, CSV-вывод, оценка $\alpha$ \\
+\texttt{src/generators.py} & степенные последовательности, erased configuration model, planted block model \\
+\texttt{src/diagnostics.py} & $\lamtwo$ (G/giant/2-core), sweep cut, $\Ph,\Delta,\rho$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+Малые собственные значения вычисляются устойчиво через
+$M=I-\tfrac12 L=\tfrac12\,(I+D^{-1/2}AD^{-1/2})$: малые $\lambda$ соответствуют
+большим собственным значениям $M$, поэтому используется
+\texttt{eigsh(M, which="LA")} с последующим преобразованием
+$\lambda=2(1-\mu)$.
+
+% =====================================================================
+\begin{thebibliography}{99}
+
+\bibitem{BenderCanfield1978}
+E.~A.~Bender, E.~R.~Canfield.
+\newblock The asymptotic number of labeled graphs with given degree sequences.
+\newblock \emph{Journal of Combinatorial Theory, Series A} \textbf{24}(3):296--307, 1978.
+
+\bibitem{BollobasRiordan2004}
+B.~Bollob\'as, O.~Riordan.
+\newblock The diameter of a scale-free random graph.
+\newblock \emph{Combinatorica} \textbf{24}(1):5--34, 2004.
+
+\bibitem{BordenaveLelargeMassoulie2018}
+C.~Bordenave, M.~Lelarge, L.~Massouli\'e.
+\newblock Non-backtracking spectrum of random graphs: community detection and
+non-regular Ramanujan graphs.
+\newblock \emph{Annals of Probability} \textbf{46}(1):1--71, 2018.
+
+\bibitem{Chung1997}
+F.~Chung.
+\newblock \emph{Spectral Graph Theory}.
+\newblock CBMS Regional Conference Series in Mathematics, vol.~92, AMS, 1997.
+
+\bibitem{ChungLu2006}
+F.~Chung, L.~Lu.
+\newblock \emph{Complex Graphs and Networks}.
+\newblock CBMS Regional Conference Series in Mathematics, vol.~107, AMS, 2006.
+
+\bibitem{ChungLuVu2003}
+F.~Chung, L.~Lu, V.~Vu.
+\newblock Spectra of random graphs with given expected degrees.
+\newblock \emph{Proceedings of the National Academy of Sciences}
+\textbf{100}(11):6313--6318, 2003.
+
+\bibitem{ChungRadcliffe2011}
+F.~Chung, M.~Radcliffe.
+\newblock On the spectra of general random graphs.
+\newblock \emph{Electronic Journal of Combinatorics} \textbf{18}(1), P215, 2011.
+
+\bibitem{CojaLanka2009}
+A.~Coja-Oghlan, S.~Lanka.
+\newblock Finding planted partitions in random graphs with general degree
+distributions.
+\newblock \emph{SIAM Journal on Discrete Mathematics} \textbf{23}(4):1682--1714, 2009.
+
+\bibitem{CojaLanka2009b}
+A.~Coja-Oghlan, S.~Lanka.
+\newblock The spectral gap of random graphs with given expected degrees.
+\newblock \emph{Electronic Journal of Combinatorics} \textbf{16}(1), R138, 2009.
+
+\bibitem{Cheeger1970}
+J.~Cheeger.
+\newblock A lower bound for the smallest eigenvalue of the Laplacian.
+\newblock In \emph{Problems in Analysis}, Princeton University Press, 195--199, 1970.
+
+\bibitem{KannanVempalaVetta2004}
+R.~Kannan, S.~Vempala, A.~Vetta.
+\newblock On clusterings: good, bad and spectral.
+\newblock \emph{Journal of the ACM} \textbf{51}(3):497--515, 2004.
+
+\bibitem{AroraRaoVazirani2009}
+S.~Arora, S.~Rao, U.~Vazirani.
+\newblock Expander flows, geometric embeddings and graph partitioning.
+\newblock \emph{Journal of the ACM} \textbf{56}(2), 2009.
+
+\bibitem{AndersenChungLang2006}
+R.~Andersen, F.~Chung, K.~Lang.
+\newblock Local graph partitioning using PageRank vectors.
+\newblock \emph{FOCS 2006}, 475--486.
+
+\bibitem{LeeOveisGharanTrevisan2012}
+J.~R.~Lee, S.~Oveis Gharan, L.~Trevisan.
+\newblock Multi-way spectral partitioning and higher-order Cheeger inequalities.
+\newblock \emph{STOC 2012}, 1117--1130.
+
+\bibitem{MolloyReed1995}
+M.~Molloy, B.~Reed.
+\newblock A critical point for random graphs with a given degree sequence.
+\newblock \emph{Random Structures \& Algorithms} \textbf{6}(2--3):161--180, 1995.
+
+\bibitem{MolloyReed1998}
+M.~Molloy, B.~Reed.
+\newblock The size of the giant component of a random graph with a given degree
+sequence.
+\newblock \emph{Combinatorics, Probability and Computing} \textbf{7}(3):295--305, 1998.
+
+\bibitem{PittelSpencerWormald1996}
+B.~Pittel, J.~Spencer, N.~Wormald.
+\newblock Sudden emergence of a giant $k$-core in a random graph.
+\newblock \emph{Journal of Combinatorial Theory, Series B} \textbf{67}(1):111--151, 1996.
+
+\bibitem{JansonLuczakRucinski2000}
+S.~Janson, T.~{\L}uczak, A.~Ruci\'nski.
+\newblock \emph{Random Graphs}.
+\newblock Wiley-Interscience, 2000.
+
+\bibitem{BarabasiAlbert1999}
+A.-L.~Barab\'asi, R.~Albert.
+\newblock Emergence of scaling in random networks.
+\newblock \emph{Science} \textbf{286}(5439):509--512, 1999.
+
+\bibitem{Faloutsos1999}
+M.~Faloutsos, P.~Faloutsos, C.~Faloutsos.
+\newblock On power-law relationships of the Internet topology.
+\newblock \emph{SIGCOMM 1999}, 251--262.
+
+\bibitem{DorogovtsevGoltsevMendesSamukhin2003}
+S.~N.~Dorogovtsev, A.~V.~Goltsev, J.~F.~F.~Mendes, A.~N.~Samukhin.
+\newblock Spectra of complex networks.
+\newblock \emph{Physical Review E} \textbf{68}, 046109, 2003.
+
+\bibitem{Soderberg2002}
+B.~S\"oderberg.
+\newblock General formalism for inhomogeneous random graphs.
+\newblock \emph{Physical Review E} \textbf{66}, 066121, 2002.
+
+\bibitem{NewmanGirvan2004}
+M.~E.~J.~Newman, M.~Girvan.
+\newblock Finding and evaluating community structure in networks.
+\newblock \emph{Physical Review E} \textbf{69}, 026113, 2004.
+
+\bibitem{Newman2006}
+M.~E.~J.~Newman.
+\newblock Modularity and community structure in networks.
+\newblock \emph{PNAS} \textbf{103}(23):8577--8582, 2006.
+
+\bibitem{DecelleKrzakalaMooreZdeborova2011}
+A.~Decelle, F.~Krzakala, C.~Moore, L.~Zdeborov\'a.
+\newblock Asymptotic analysis of the stochastic block model for modular networks
+and its algorithmic applications.
+\newblock \emph{Physical Review E} \textbf{84}, 066106, 2011.
+
+\bibitem{Abbe2018}
+E.~Abbe.
+\newblock Community detection and stochastic block models: recent developments.
+\newblock \emph{Journal of Machine Learning Research} \textbf{18}(177):1--86, 2018.
+
+\bibitem{AlbertJeongBarabasi2000}
+R.~Albert, H.~Jeong, A.-L.~Barab\'asi.
+\newblock Error and attack tolerance of complex networks.
+\newblock \emph{Nature} \textbf{406}:378--382, 2000.
+
+\bibitem{AlbertBarabasi2002}
+R.~Albert, A.-L.~Barab\'asi.
+\newblock Statistical mechanics of complex networks.
+\newblock \emph{Reviews of Modern Physics} \textbf{74}(1):47--97, 2002.
+
+\bibitem{Newman2010}
+M.~E.~J.~Newman.
+\newblock \emph{Networks: An Introduction}.
+\newblock Oxford University Press, 2010.
+
+\bibitem{BarratBarthelemyVespignani2008}
+A.~Barrat, M.~Barth\'elemy, A.~Vespignani.
+\newblock \emph{Dynamical Processes on Complex Networks}.
+\newblock Cambridge University Press, 2008.
+
+\end{thebibliography}
+
+\end{document}
