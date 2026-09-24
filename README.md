@@ -495,15 +495,21 @@ Configuration model: (d₁, …, d_n), N_k(n) ∼ c·n·k^(−γ). Варьир�
 
 ```
 graf/
-├── README.md                  # этот документ (Unicode-обозначения)
-├── paper.tex                  # вёрстка статьи (LaTeX, T2A/babel russian)
-├── paper.pdf                  # скомпилированный препринт (RU)
-├── paper_en.tex               # английская версия (для конференции)
-├── paper_en.pdf               # скомпилированный препринт (EN)
+├── README.md                  # этот документ
+├── LITERATURE.md              # разбор литературы 2003–2008 (вывод: новизны нет)
+├── CHANGELOG.md               # журнал изменений
+├── TOY_MODEL.md               # дизайн toy-модели
+├── LICENSE                    # MIT
 ├── requirements.txt
-├── run_experiments.py         # оркестрация: 4 ансамбля × (n, γ, d_min), CSV-вывод
+├── run_experiments.py         # оркестрация: ансамбли × (n, γ, d_min), CSV-вывод
 ├── analyze_results.py         # α(n), α(φ), фазовая диаграмма, режимы, фигуры
-├── export_graph.py            # экспорт сохранённых .npz -> edgelist/CSV/GraphML/GML/JSON
+├── analyze_gap_fss.py         # finite-size scaling щели (λ_c, θ) и распределения
+├── validate_power_law.py      # AICc: power law vs 1/log vs exp-log
+├── run_er_control.py          # ER-контроль (спад генерический)
+├── run_toy_controls.py        # toy-контроли (хвост vs доля degree-2)
+├── toy_model.py               # скелет toy-модели
+├── merge_diagnostics.py       # слияние diagnostics.csv нескольких прогонов
+├── export_graph.py            # экспорт .npz -> edgelist/CSV/GraphML/GML/JSON
 ├── src/
 │   ├── generators.py          # degree sequences + configuration model, 4 ансамбля
 │   └── diagnostics.py         # λ₂ (full/giant/2-core), sweep cut, φ, Δ, ρ, IPR, φ_curve
@@ -532,8 +538,6 @@ python analyze_results.py --csv results/diagnostics.csv --out analysis/
 python export_graph.py results/graphs/pl_dmin2_g2.5_n1000_d2_r0.npz \
     --format edgelist --out graph.txt
 python export_graph.py results/graphs --format graphml --glob "planted_*" --out export/
-
-pdflatex paper.tex && pdflatex paper.tex   # сборка PDF
 ```
 
 ---
