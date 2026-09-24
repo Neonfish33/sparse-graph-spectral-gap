@@ -540,6 +540,25 @@ python export_graph.py results/graphs/pl_dmin2_g2.5_n1000_d2_r0.npz \
 python export_graph.py results/graphs --format graphml --glob "planted_*" --out export/
 ```
 
+### Данные в репозитории
+
+В git включены **производные** данные (~13 МБ), чтобы анализ воспроизводился сразу:
+- `results_merged/diagnostics.csv` — главный датасет (14700 строк, v2 + large, `n=100…10⁵`);
+- `results_large/`, `results_er/`, `results_toy/`, `results_toy_model/` — `diagnostics.csv`;
+- `results_*/analysis/**` — таблицы, `summary.txt`, фигуры;
+- `results_agents/**` — отчёты независимых агентов (скептик, FSS).
+
+**Не включены** (в `.gitignore`, перегенерируются детерминированно по `seed` из CSV):
+- `results_*/graphs/` — 231 МБ, 13500 `.npz` (графы);
+- `results_*/phi_curves.csv`, логи, а также устаревшие `results_v2/`, `results_fixed/`.
+
+Пример перегенерации графов:
+```bash
+python run_experiments.py --n 100 200 500 1000 3000 10000 \
+    --gammas 2.1 2.5 3.0 --dmin 2 3 --dmax 50 --reps 50 \
+    --save-graphs --jobs 6 --out results_v2
+```
+
 ---
 
 ## 22. Библиография
