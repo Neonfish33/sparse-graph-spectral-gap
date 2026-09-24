@@ -1,0 +1,12 @@
+﻿results_merged/diagnostics.csv
+ cols: 60
+  ['ensemble', '╬│', 'd_min', '╬╝', 'n_target', 'rep', 'seed', 'graph_id', 'n', 'm', 'd╠Д', 'd_max', 'd_min_obs', 'n_comp', 'NтВБ', 'NтВВ', 'n_full', 'm_full', '╬╗тВВ_full', '╬╗тВГ_full', '(╬╗тВГтИТ╬╗тВВ)_full', '╧Ж_periph_full', '╧Ж_mod_full', '╧Ж*_full', '╧Б*_full', '╧БтВВ_full', 'log╬Ф_full', 'IPRтВВ_full', 'IPRтВВ^╧А_full', 'PRтВВ_full', 'frac_giant', 'n_giant', 'm_giant', '╬╗тВВ_giant', '╬╗тВГ_giant', '(╬╗тВГтИТ╬╗тВВ)_giant', '╧Ж_periph_giant', '╧Ж_mod_giant', '╧Ж*_giant', '╧Б*_giant', '╧БтВВ_giant', 'log╬Ф_giant', 'IPRтВВ_giant', 'IPRтВВ^╧А_giant', 'PRтВВ_giant', 'frac_2core', 'n_core', 'm_core', '╬╗тВВ_core', '╬╗тВГ_core', '(╬╗тВГтИТ╬╗тВВ)_core', '╧Ж_periph_core', '╧Ж_mod_core', '╧Ж*_core', '╧Б*_core', '╧БтВВ_core', 'log╬Ф_core', 'IPRтВВ_core', 'IPRтВВ^╧А_core', 'PRтВВ_core']
+
+results_er/diagnostics.csv
+ cols: 21
+  ['model', 'c', 'n_target', 'rep', 'seed', 'n', 'm', 'avg_deg', 'n_components', 'N1', 'N2', 'giant_frac', 'giant_n', 'giant_lambda2', 'giant_phi_star', 'giant_ipr2', 'core_frac', 'core_n', 'core_lambda2', 'core_phi_star', 'core_ipr2']
+
+results_toy/diagnostics.csv
+ cols: 18
+  ['model', 'kind', 'gamma', 'D', 'p2_target', 'n_target', 'rep', 'n', 'm', 'avg_deg', 'N1', 'N2', 'p2_emp', 'giant_frac', 'giant_lambda2', 'core_frac', 'core_n', 'core_lambda2']
+

@@ -2,15 +2,28 @@
 __pycache__/
 *.pyc
 
-# Данные экспериментов (большие, лежат на диске, не в git)
-results_*/
+# --- Большие/промежуточные данные (НЕ в git) ---
+# графы: 231 МБ, 13500 файлов -> детерминированно перегенерируются из seed
+results_*/graphs/
+# φ-профили (крупные, per-rep)
+results_*/phi_curves.csv
+# логи фоновых прогонов
+results_*/run*.log
+results_*/run*.err
+# сырые/устаревшие прогоны, перекрытые results_merged
+results_v2/
+results_fixed/
+
+# --- Прочее ---
 export_test/
 export/
 export_graphml/
-
-# Прочее
 files.zip
 *.aux
 *.log
 *.out
 *.toc
+
+# В git ПОПАДАЮТ: results_*/diagnostics.csv и results_*/analysis/** (производные,
+# ~13 МБ) — чтобы анализ (analyze_results.py, validate_power_law.py и т.д.)
+# воспроизводился без перегенерации графов.

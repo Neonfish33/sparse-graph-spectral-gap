@@ -1,0 +1,79 @@
+================ K. jackknife alpha (drop one n) ================
+ pl_dmin2 g=2.1: full=0.1496 jack[min=0.1462 max=0.1520] drop100=0.1514 drop1e5=0.1520
+ pl_dmin2 g=2.5: full=0.1580 jack[min=0.1565 max=0.1608] drop100=0.1603 drop1e5=0.1608
+ pl_dmin2 g=3.0: full=0.1708 jack[min=0.1663 max=0.1727] drop100=0.1663 drop1e5=0.1727
+ pl_dmin3 g=2.1: full=0.0374 jack[min=0.0370 max=0.0389] drop100=0.0371 drop1e5=0.0389
+ pl_dmin3 g=2.5: full=0.0345 jack[min=0.0331 max=0.0359] drop100=0.0331 drop1e5=0.0359
+ pl_dmin3 g=3.0: full=0.0295 jack[min=0.0261 max=0.0321] drop100=0.0261 drop1e5=0.0321
+ ER c=2 giant: full=0.2697 jack[min=0.2593 max=0.2858]
+ ER c=2 core : full=0.1375 jack[min=0.1067 max=0.1462]
+ ER c=3 giant: full=0.2059 jack[min=0.1920 max=0.2162]
+ ER c=3 core : full=0.0885 jack[min=0.0811 max=0.0929]
+ ER c=4 giant: full=0.1675 jack[min=0.1637 max=0.1740]
+ ER c=4 core : full=0.0720 jack[min=0.0697 max=0.0732]
+
+================ L. localization diagnostics (IPR2_giant * n, gap23) ================
+ pl_dmin2 g=2.1:
+   n=    100: IPR2*n mean=11.855  gap23 mean=0.03551  frac(gap23<1e-3)=0.020
+   n=    200: IPR2*n mean=27.863  gap23 mean=0.02750  frac(gap23<1e-3)=0.000
+   n=    500: IPR2*n mean=68.235  gap23 mean=0.02469  frac(gap23<1e-3)=0.000
+   n=   1000: IPR2*n mean=177.150  gap23 mean=0.02238  frac(gap23<1e-3)=0.000
+   n=   3000: IPR2*n mean=561.757  gap23 mean=0.01536  frac(gap23<1e-3)=0.060
+   n=  10000: IPR2*n mean=1839.749  gap23 mean=0.01470  frac(gap23<1e-3)=0.080
+   n=  30000: IPR2*n mean=5414.677  gap23 mean=0.01117  frac(gap23<1e-3)=0.060
+   n= 100000: IPR2*n mean=16617.851  gap23 mean=0.00967  frac(gap23<1e-3)=0.110
+ pl_dmin2 g=2.5:
+   n=    100: IPR2*n mean=10.457  gap23 mean=0.03375  frac(gap23<1e-3)=0.000
+   n=    200: IPR2*n mean=20.023  gap23 mean=0.02244  frac(gap23<1e-3)=0.000
+   n=    500: IPR2*n mean=61.165  gap23 mean=0.01922  frac(gap23<1e-3)=0.000
+   n=   1000: IPR2*n mean=124.472  gap23 mean=0.01325  frac(gap23<1e-3)=0.020
+   n=   3000: IPR2*n mean=425.603  gap23 mean=0.01020  frac(gap23<1e-3)=0.080
+   n=  10000: IPR2*n mean=1358.594  gap23 mean=0.00955  frac(gap23<1e-3)=0.100
+   n=  30000: IPR2*n mean=3985.081  gap23 mean=0.00662  frac(gap23<1e-3)=0.160
+   n= 100000: IPR2*n mean=12846.735  gap23 mean=0.00604  frac(gap23<1e-3)=0.110
+ pl_dmin2 g=3.0:
+   n=    100: IPR2*n mean=7.155  gap23 mean=0.02041  frac(gap23<1e-3)=0.000
+   n=    200: IPR2*n mean=14.465  gap23 mean=0.01321  frac(gap23<1e-3)=0.020
+   n=    500: IPR2*n mean=41.013  gap23 mean=0.01173  frac(gap23<1e-3)=0.040
+   n=   1000: IPR2*n mean=91.088  gap23 mean=0.00871  frac(gap23<1e-3)=0.060
+   n=   3000: IPR2*n mean=286.971  gap23 mean=0.00634  frac(gap23<1e-3)=0.160
+   n=  10000: IPR2*n mean=934.766  gap23 mean=0.00520  frac(gap23<1e-3)=0.140
+   n=  30000: IPR2*n mean=2821.944  gap23 mean=0.00328  frac(gap23<1e-3)=0.360
+   n= 100000: IPR2*n mean=9125.045  gap23 mean=0.00336  frac(gap23<1e-3)=0.200
+ pl_dmin3 g=2.1:
+   n=    100: IPR2*n mean=6.909  gap23 mean=0.03509  frac(gap23<1e-3)=0.000
+   n=    200: IPR2*n mean=10.785  gap23 mean=0.02341  frac(gap23<1e-3)=0.000
+   n=    500: IPR2*n mean=31.975  gap23 mean=0.01554  frac(gap23<1e-3)=0.000
+   n=   1000: IPR2*n mean=71.814  gap23 mean=0.01402  frac(gap23<1e-3)=0.020
+   n=   3000: IPR2*n mean=238.131  gap23 mean=0.01117  frac(gap23<1e-3)=0.020
+   n=  10000: IPR2*n mean=995.217  gap23 mean=0.01082  frac(gap23<1e-3)=0.080
+   n=  30000: IPR2*n mean=3045.618  gap23 mean=0.00943  frac(gap23<1e-3)=0.120
+   n= 100000: IPR2*n mean=10845.495  gap23 mean=0.00769  frac(gap23<1e-3)=0.110
+ pl_dmin3 g=2.5:
+   n=    100: IPR2*n mean=5.591  gap23 mean=0.03051  frac(gap23<1e-3)=0.000
+   n=    200: IPR2*n mean=8.893  gap23 mean=0.02106  frac(gap23<1e-3)=0.000
+   n=    500: IPR2*n mean=19.538  gap23 mean=0.01261  frac(gap23<1e-3)=0.000
+   n=   1000: IPR2*n mean=41.904  gap23 mean=0.01071  frac(gap23<1e-3)=0.000
+   n=   3000: IPR2*n mean=159.701  gap23 mean=0.00899  frac(gap23<1e-3)=0.040
+   n=  10000: IPR2*n mean=539.231  gap23 mean=0.00557  frac(gap23<1e-3)=0.120
+   n=  30000: IPR2*n mean=2058.356  gap23 mean=0.00627  frac(gap23<1e-3)=0.120
+   n= 100000: IPR2*n mean=7450.459  gap23 mean=0.00545  frac(gap23<1e-3)=0.150
+ pl_dmin3 g=3.0:
+   n=    100: IPR2*n mean=4.968  gap23 mean=0.02864  frac(gap23<1e-3)=0.000
+   n=    200: IPR2*n mean=8.314  gap23 mean=0.01817  frac(gap23<1e-3)=0.000
+   n=    500: IPR2*n mean=14.103  gap23 mean=0.01086  frac(gap23<1e-3)=0.000
+   n=   1000: IPR2*n mean=17.624  gap23 mean=0.00640  frac(gap23<1e-3)=0.040
+   n=   3000: IPR2*n mean=61.864  gap23 mean=0.00512  frac(gap23<1e-3)=0.080
+   n=  10000: IPR2*n mean=318.001  gap23 mean=0.00601  frac(gap23<1e-3)=0.020
+   n=  30000: IPR2*n mean=972.726  gap23 mean=0.00383  frac(gap23<1e-3)=0.270
+   n= 100000: IPR2*n mean=4111.646  gap23 mean=0.00346  frac(gap23<1e-3)=0.200
+
+================ M. explicit alpha ratios at ~matched core dbar ================
+PL dmin2: alpha_giant / alpha_core, core dbar (~n-independent):
+  g=2.1: core_dbar=5.06 alpha_giant=0.1496 alpha_core=0.1501
+  g=2.5: core_dbar=3.87 alpha_giant=0.1580 alpha_core=0.1597
+  g=3.0: core_dbar=3.08 alpha_giant=0.1708 alpha_core=0.1724
+ER: alpha_giant vs alpha_core (core dbar from LITERATURE: c2=2.68 c3=3.44 c4=4.26):
+  c=2 core_dbar~2.68: alpha_giant=0.2697 alpha_core=0.1375
+  c=3 core_dbar~3.44: alpha_giant=0.2059 alpha_core=0.0885
+  c=4 core_dbar~4.26: alpha_giant=0.1675 alpha_core=0.0720

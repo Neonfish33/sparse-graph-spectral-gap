@@ -1,0 +1,49 @@
+﻿================ H. v2-only (n<=1e4) vs full (incl n=3e4,1e5) & extrapolation ================
+ pl_dmin2 g=2.1: alpha v2-only(<=1e4)=0.1566 R2=0.9919 | full=0.1496 R2=0.9957
+      n=  30000: observed=0.08340 extrap_v2=0.08024 ratio_obs/pred=1.0394
+      n= 100000: observed=0.06999 extrap_v2=0.06645 ratio_obs/pred=1.0534
+ pl_dmin2 g=2.5: alpha v2-only(<=1e4)=0.1597 R2=0.9923 | full=0.1580 R2=0.9967
+      n=  30000: observed=0.04855 extrap_v2=0.04899 ratio_obs/pred=0.9910
+      n= 100000: observed=0.04144 extrap_v2=0.04042 ratio_obs/pred=1.0252
+ pl_dmin2 g=3.0: alpha v2-only(<=1e4)=0.1802 R2=0.9929 | full=0.1708 R2=0.9955
+      n=  30000: observed=0.02628 extrap_v2=0.02468 ratio_obs/pred=1.0649
+      n= 100000: observed=0.02115 extrap_v2=0.01986 ratio_obs/pred=1.0647
+ pl_dmin3 g=2.1: alpha v2-only(<=1e4)=0.0394 R2=0.9920 | full=0.0374 R2=0.9942
+      n=  30000: observed=0.25739 extrap_v2=0.25621 ratio_obs/pred=1.0046
+      n= 100000: observed=0.24916 extrap_v2=0.24433 ratio_obs/pred=1.0198
+ pl_dmin3 g=2.5: alpha v2-only(<=1e4)=0.0369 R2=0.9847 | full=0.0345 R2=0.9907
+      n=  30000: observed=0.21409 extrap_v2=0.21241 ratio_obs/pred=1.0079
+      n= 100000: observed=0.20745 extrap_v2=0.20318 ratio_obs/pred=1.0210
+ pl_dmin3 g=3.0: alpha v2-only(<=1e4)=0.0359 R2=0.9621 | full=0.0295 R2=0.9552
+      n=  30000: observed=0.17241 extrap_v2=0.16694 ratio_obs/pred=1.0327
+      n= 100000: observed=0.16812 extrap_v2=0.15988 ratio_obs/pred=1.0516
+
+================ I. model selection: power law vs stretched-exp (AICc) ================
+series                        alpha_pl   AICc_pl AICc_explog     winner beta3
+pl_dmin2 g2.1                   0.1496    -84.26      -78.87      power 0.955
+pl_dmin2 g2.5                   0.1580    -96.56      -95.12      power 1.291
+pl_dmin2 g3.0                   0.1708   -100.27     -110.56     explog 0.499
+pl_dmin3 g2.1                   0.0374    -94.61      -91.29      power 0.715
+pl_dmin3 g2.5                   0.0345    -94.29     -102.96     explog 0.289
+pl_dmin3 g3.0                   0.0295    -87.59      -90.03     explog 0.1
+ER c=2 giant                    0.2697   -102.47     -114.90     explog 0.286
+ER c=2 core                     0.1375    -75.88      -74.13      power 0.1
+ER c=3 giant                    0.2059    -79.07      -76.38      power 0.119
+ER c=3 core                     0.0885    -83.89      -79.45      power 0.293
+ER c=4 giant                    0.1675    -83.73      -78.38      power 1.127
+ER c=4 core                     0.0720    -89.26      -85.55      power 0.617
+
+================ J. bootstrap 95% CI of alpha (resample reps within n, B=800) ================
+ pl_dmin2 g=2.1 alpha_giant = 0.1496 CI=[0.1432 0.1563]
+ pl_dmin2 g=2.5 alpha_giant = 0.1580 CI=[0.1494 0.1658]
+ pl_dmin2 g=3.0 alpha_giant = 0.1708 CI=[0.1607 0.1794]
+ pl_dmin3 g=2.1 alpha_giant = 0.0374 CI=[0.0348 0.0401]
+ pl_dmin3 g=2.5 alpha_giant = 0.0345 CI=[0.0317 0.0372]
+ pl_dmin3 g=3.0 alpha_giant = 0.0295 CI=[0.026 0.033]
+ ER c=2 giant alpha = 0.2697 CI=[0.2431 0.2937]
+ ER c=2 core  alpha = 0.1375 CI=[0.1172 0.1562]
+ ER c=3 giant alpha = 0.2059 CI=[0.1916 0.2192]
+ ER c=3 core  alpha = 0.0885 CI=[0.078  0.0988]
+ ER c=4 giant alpha = 0.1675 CI=[0.1537 0.1808]
+ ER c=4 core  alpha = 0.0720 CI=[0.0638 0.0804]
+written C:\Users\yagan\OneDrive\╨Ф╨╛╨║╤Г╨╝╨╡╨╜╤В╤Л\graf\results_agents\devils_advocate\report_data2.txt

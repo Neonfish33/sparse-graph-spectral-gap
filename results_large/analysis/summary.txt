@@ -1,0 +1,43 @@
+=== α в λ₂ ~ n^(−α)  (R², точек n) ===
+      ensemble     γ  dmin    α(G)    R²  α(giant)    R²  α(core)    R²
+      pl_dmin2   2.1   2.0     nan   nan       nan   nan      nan   nan
+      pl_dmin2   2.5   2.0     nan   nan       nan   nan      nan   nan
+      pl_dmin2   3.0   2.0     nan   nan       nan   nan      nan   nan
+      pl_dmin3   2.1   3.0     nan   nan       nan   nan      nan   nan
+      pl_dmin3   2.5   3.0     nan   nan       nan   nan      nan   nan
+      pl_dmin3   3.0   3.0     nan   nan       nan   nan      nan   nan
+
+=== α в λ₂ ~ (φ*)^α  (giant; Cheeger ⇒ ожидаем α∈[1,2]) ===
+      ensemble     γ    obs      α_φ    R²  в [1,2]
+      pl_dmin2   2.1   full    1.153  0.70     True
+      pl_dmin2   2.1  giant    1.161  0.70     True
+      pl_dmin2   2.1   core    1.153  0.70     True
+      pl_dmin2   2.5   full    1.083  0.71     True
+      pl_dmin2   2.5  giant    1.089  0.71     True
+      pl_dmin2   2.5   core    1.089  0.71     True
+      pl_dmin2   3.0   full    1.104  0.68     True
+      pl_dmin2   3.0  giant    1.083  0.67     True
+      pl_dmin2   3.0   core    1.084  0.67     True
+      pl_dmin3   2.1   full   -1.455  0.79    False
+      pl_dmin3   2.1  giant   -1.455  0.79    False
+      pl_dmin3   2.1   core   -1.456  0.79    False
+      pl_dmin3   2.5   full   -1.344  0.80    False
+      pl_dmin3   2.5  giant   -1.344  0.80    False
+      pl_dmin3   2.5   core   -1.345  0.80    False
+      pl_dmin3   3.0   full   -1.189  0.78    False
+      pl_dmin3   3.0  giant   -1.189  0.78    False
+      pl_dmin3   3.0   core   -1.189  0.78    False
+
+=== d_min=2 vs d_min=3 (оба без листьев): эффект степени 2 ===
+    γ      n  λ₂(dmin2)  λ₂(dmin3)  ratio   φ*(d2)   φ*(d3)
+  2.1 30000.0     0.0834     0.2574   3.09    0.170    0.335
+  2.1 100000.0     0.0700     0.2492   3.56    0.153    0.342
+  2.5 30000.0     0.0486     0.2141   4.41    0.128    0.293
+  2.5 100000.0     0.0414     0.2074   5.01    0.114    0.299
+  3.0 30000.0     0.0263     0.1724   6.56    0.093    0.243
+  3.0 100000.0     0.0211     0.1681   7.95    0.081    0.248
+
+=== режимы (эвристика) ===
+peripheral: d_min=1, ρ*<0.25, logΔ≥0, IPR₂·n≥1.5
+modular:    ρ*≥0.25, logΔ<0.5
+   core-no-periphery: 12

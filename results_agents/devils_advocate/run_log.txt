@@ -1,0 +1,240 @@
+﻿loaded merged: 14700
+
+================ A. PL ensembles: alpha(giant/core/full) & range stability ================
+
+-- pl_dmin1 gamma=2.1 d_min=1.0  (n points: [100, 200, 500, 1000, 3000, 10000])
+   alpha_giant full-range = 0.2678  R2=0.9897  (pts=6)   means=[np.float64(0.0721), np.float64(0.0595), np.float64(0.0426), np.float64(0.0355), np.float64(0.0277), np.float64(0.0212)]
+   alpha_core  full-range = 0.1584  R2=0.9798  (pts=6)   means=[np.float64(0.2209), np.float64(0.1875), np.float64(0.1546), np.float64(0.1428), np.float64(0.1205), np.float64(0.1055)]
+   alpha_full  full-range = nan  R2=nan  (pts=0)   means=[np.float64(0.0), np.float64(0.0), np.float64(0.0), np.float64(0.0), np.float64(0.0), np.float64(0.0)]
+   n>=  1000: alpha_giant=0.2239 R2=1.0000 | alpha_core=0.1313 R2=0.9906 (pts=3)
+   n>=  3000: alpha_giant=0.2232 R2=1.0000 | alpha_core=0.1105 R2=1.0000 (pts=2)
+   local alpha_giant per step: [0.2761, 0.3656, 0.2635, 0.2247, 0.2232]
+   alpha_giant on GEOMEAN = 0.2518 R2=0.9905
+   alpha_giant POOLED all realizations = 0.2518 R2=0.4992 (N=300)
+
+-- pl_dmin1 gamma=2.5 d_min=1.0  (n points: [100, 200, 500, 1000, 3000, 10000])
+   alpha_giant full-range = 0.4013  R2=0.9661  (pts=6)   means=[np.float64(0.0466), np.float64(0.0291), np.float64(0.0174), np.float64(0.0146), np.float64(0.0095), np.float64(0.0071)]
+   alpha_core  full-range = 0.4361  R2=0.8679  (pts=6)   means=[np.float64(0.4972), np.float64(0.1918), np.float64(0.1289), np.float64(0.0922), np.float64(0.0664), np.float64(0.0567)]
+   alpha_full  full-range = nan  R2=nan  (pts=0)   means=[np.float64(0.0), np.float64(0.0), np.float64(0.0), np.float64(0.0), np.float64(0.0), np.float64(0.0)]
+   n>=  1000: alpha_giant=0.3136 R2=0.9832 | alpha_core=0.2100 R2=0.9499 (pts=3)
+   n>=  3000: alpha_giant=0.2467 R2=1.0000 | alpha_core=0.1314 R2=1.0000 (pts=2)
+   local alpha_giant per step: [0.6803, 0.5597, 0.2573, 0.3892, 0.2467]
+   alpha_giant on GEOMEAN = 0.3783 R2=0.9624
+   alpha_giant POOLED all realizations = 0.3783 R2=0.5872 (N=300)
+
+-- pl_dmin1 gamma=3.0 d_min=1.0  (n points: [100, 200, 500, 1000, 3000, 10000])
+   alpha_giant full-range = 1.0996  R2=0.9943  (pts=6)   means=[np.float64(0.143), np.float64(0.0712), np.float64(0.0255), np.float64(0.009), np.float64(0.0042), np.float64(0.0009)]
+   alpha_core  full-range = 0.7784  R2=0.9083  (pts=6)   means=[np.float64(1.0637), np.float64(0.798), np.float64(0.4851), np.float64(0.3953), np.float64(0.1663), np.float64(0.0232)]
+   alpha_full  full-range = nan  R2=nan  (pts=0)   means=[np.float64(0.0), np.float64(0.0), np.float64(0.0), np.float64(0.0), np.float64(0.0), np.float64(0.0)]
+   n>=  1000: alpha_giant=1.0215 R2=0.9726 | alpha_core=1.2382 R2=0.9625 (pts=3)
+   n>=  3000: alpha_giant=1.3013 R2=1.0000 | alpha_core=1.6367 R2=1.0000 (pts=2)
+   local alpha_giant per step: [1.0069, 1.1185, 1.5007, 0.7053, 1.3013]
+   alpha_giant on GEOMEAN = 1.0701 R2=0.9938
+   alpha_giant POOLED all realizations = 1.0701 R2=0.8040 (N=300)
+
+-- pl_dmin2 gamma=2.1 d_min=2.0  (n points: [100, 200, 500, 1000, 3000, 10000, 30000, 100000])
+   alpha_giant full-range = 0.1496  R2=0.9957  (pts=8)   means=[np.float64(0.191), np.float64(0.1824), np.float64(0.1541), np.float64(0.133), np.float64(0.1157), np.float64(0.0953), np.float64(0.0834), np.float64(0.07)]
+   alpha_core  full-range = 0.1501  R2=0.9962  (pts=8)   means=[np.float64(0.1912), np.float64(0.183), np.float64(0.1519), np.float64(0.1339), np.float64(0.1157), np.float64(0.0953), np.float64(0.0834), np.float64(0.0695)]
+   alpha_full  full-range = 0.1479  R2=0.9934  (pts=8)   means=[np.float64(0.187), np.float64(0.1824), np.float64(0.1518), np.float64(0.1307), np.float64(0.1134), np.float64(0.0953), np.float64(0.0834), np.float64(0.0695)]
+   n>=  1000: alpha_giant=0.1400 R2=0.9986 | alpha_core=0.1425 R2=0.9987 (pts=5)
+   n>=  3000: alpha_giant=0.1413 R2=0.9976 | alpha_core=0.1433 R2=0.9976 (pts=4)
+   n>= 10000: alpha_giant=0.1344 R2=0.9974 | alpha_core=0.1376 R2=0.9961 (pts=3)
+   local alpha_giant per step: [0.0659, 0.1842, 0.2128, 0.127, 0.1604, 0.1219, 0.1456]
+   alpha_giant on GEOMEAN = 0.1482 R2=0.9952
+   alpha_giant POOLED all realizations = 0.1471 R2=0.7827 (N=500)
+
+-- pl_dmin2 gamma=2.5 d_min=2.0  (n points: [100, 200, 500, 1000, 3000, 10000, 30000, 100000])
+   alpha_giant full-range = 0.1580  R2=0.9967  (pts=8)   means=[np.float64(0.1191), np.float64(0.1081), np.float64(0.0963), np.float64(0.0861), np.float64(0.0721), np.float64(0.0566), np.float64(0.0486), np.float64(0.0414)]
+   alpha_core  full-range = 0.1597  R2=0.9980  (pts=8)   means=[np.float64(0.1208), np.float64(0.1099), np.float64(0.0964), np.float64(0.0862), np.float64(0.0722), np.float64(0.0572), np.float64(0.0486), np.float64(0.0414)]
+   alpha_full  full-range = 0.1611  R2=0.9913  (pts=8)   means=[np.float64(0.1176), np.float64(0.1081), np.float64(0.0949), np.float64(0.0832), np.float64(0.0691), np.float64(0.0525), np.float64(0.0474), np.float64(0.041)]
+   n>=  1000: alpha_giant=0.1615 R2=0.9933 | alpha_core=0.1616 R2=0.9952 (pts=5)
+   n>=  3000: alpha_giant=0.1563 R2=0.9883 | alpha_core=0.1574 R2=0.9916 (pts=4)
+   n>= 10000: alpha_giant=0.1353 R2=0.9997 | alpha_core=0.1398 R2=0.9987 (pts=3)
+   local alpha_giant per step: [0.1397, 0.1254, 0.1614, 0.1618, 0.2013, 0.1395, 0.1315]
+   alpha_giant on GEOMEAN = 0.1548 R2=0.9965
+   alpha_giant POOLED all realizations = 0.1544 R2=0.7301 (N=500)
+
+-- pl_dmin2 gamma=3.0 d_min=2.0  (n points: [100, 200, 500, 1000, 3000, 10000, 30000, 100000])
+   alpha_giant full-range = 0.1708  R2=0.9955  (pts=8)   means=[np.float64(0.0706), np.float64(0.061), np.float64(0.0508), np.float64(0.0449), np.float64(0.0362), np.float64(0.0312), np.float64(0.0263), np.float64(0.0211)]
+   alpha_core  full-range = 0.1724  R2=0.9929  (pts=8)   means=[np.float64(0.0713), np.float64(0.0595), np.float64(0.0523), np.float64(0.043), np.float64(0.0362), np.float64(0.0312), np.float64(0.0257), np.float64(0.0209)]
+   alpha_full  full-range = 0.1666  R2=0.9743  (pts=8)   means=[np.float64(0.0703), np.float64(0.055), np.float64(0.0464), np.float64(0.0379), np.float64(0.0354), np.float64(0.0299), np.float64(0.0247), np.float64(0.0203)]
+   n>=  1000: alpha_giant=0.1584 R2=0.9954 | alpha_core=0.1548 R2=0.9961 (pts=5)
+   n>=  3000: alpha_giant=0.1533 R2=0.9925 | alpha_core=0.1582 R2=0.9936 (pts=4)
+   n>= 10000: alpha_giant=0.1690 R2=0.9983 | alpha_core=0.1740 R2=1.0000 (pts=3)
+   local alpha_giant per step: [0.21, 0.2, 0.1799, 0.196, 0.123, 0.1562, 0.1803]
+   alpha_giant on GEOMEAN = 0.1643 R2=0.9966
+   alpha_giant POOLED all realizations = 0.1635 R2=0.7405 (N=500)
+
+-- pl_dmin3 gamma=2.1 d_min=3.0  (n points: [100, 200, 500, 1000, 3000, 10000, 30000, 100000])
+   alpha_giant full-range = 0.0374  R2=0.9942  (pts=8)   means=[np.float64(0.3205), np.float64(0.3127), np.float64(0.3022), np.float64(0.2902), np.float64(0.2829), np.float64(0.2668), np.float64(0.2574), np.float64(0.2492)]
+   alpha_core  full-range = 0.0375  R2=0.9941  (pts=8)   means=[np.float64(0.3207), np.float64(0.3128), np.float64(0.3022), np.float64(0.2902), np.float64(0.2829), np.float64(0.2668), np.float64(0.2574), np.float64(0.2492)]
+   alpha_full  full-range = 0.0374  R2=0.9942  (pts=8)   means=[np.float64(0.3205), np.float64(0.3127), np.float64(0.3022), np.float64(0.2902), np.float64(0.2829), np.float64(0.2668), np.float64(0.2574), np.float64(0.2492)]
+   n>=  1000: alpha_giant=0.0347 R2=0.9878 | alpha_core=0.0347 R2=0.9878 (pts=5)
+   n>=  3000: alpha_giant=0.0359 R2=0.9801 | alpha_core=0.0359 R2=0.9801 (pts=4)
+   n>= 10000: alpha_giant=0.0297 R2=0.9969 | alpha_core=0.0297 R2=0.9969 (pts=3)
+   local alpha_giant per step: [0.0357, 0.0375, 0.0583, 0.0231, 0.0487, 0.0327, 0.027]
+   alpha_giant on GEOMEAN = 0.0369 R2=0.9943
+   alpha_giant POOLED all realizations = 0.0366 R2=0.7102 (N=500)
+
+-- pl_dmin3 gamma=2.5 d_min=3.0  (n points: [100, 200, 500, 1000, 3000, 10000, 30000, 100000])
+   alpha_giant full-range = 0.0345  R2=0.9907  (pts=8)   means=[np.float64(0.2643), np.float64(0.2558), np.float64(0.2454), np.float64(0.2392), np.float64(0.2297), np.float64(0.2235), np.float64(0.2141), np.float64(0.2074)]
+   alpha_core  full-range = 0.0350  R2=0.9895  (pts=8)   means=[np.float64(0.2656), np.float64(0.2558), np.float64(0.246), np.float64(0.2395), np.float64(0.2297), np.float64(0.2235), np.float64(0.2141), np.float64(0.2074)]
+   alpha_full  full-range = 0.0345  R2=0.9907  (pts=8)   means=[np.float64(0.2643), np.float64(0.2558), np.float64(0.2454), np.float64(0.2392), np.float64(0.2297), np.float64(0.2235), np.float64(0.2141), np.float64(0.2074)]
+   n>=  1000: alpha_giant=0.0308 R2=0.9944 | alpha_core=0.0310 R2=0.9940 (pts=5)
+   n>=  3000: alpha_giant=0.0299 R2=0.9901 | alpha_core=0.0299 R2=0.9901 (pts=4)
+   n>= 10000: alpha_giant=0.0323 R2=0.9868 | alpha_core=0.0323 R2=0.9868 (pts=3)
+   local alpha_giant per step: [0.0477, 0.0449, 0.0371, 0.037, 0.0227, 0.0391, 0.0262]
+   alpha_giant on GEOMEAN = 0.0338 R2=0.9922
+   alpha_giant POOLED all realizations = 0.0335 R2=0.6449 (N=500)
+
+-- pl_dmin3 gamma=3.0 d_min=3.0  (n points: [100, 200, 500, 1000, 3000, 10000, 30000, 100000])
+   alpha_giant full-range = 0.0295  R2=0.9552  (pts=8)   means=[np.float64(0.2087), np.float64(0.1975), np.float64(0.1904), np.float64(0.1892), np.float64(0.1815), np.float64(0.1745), np.float64(0.1724), np.float64(0.1681)]
+   alpha_core  full-range = 0.0305  R2=0.9541  (pts=8)   means=[np.float64(0.21), np.float64(0.199), np.float64(0.1911), np.float64(0.1893), np.float64(0.1817), np.float64(0.1745), np.float64(0.1724), np.float64(0.1681)]
+   alpha_full  full-range = 0.0295  R2=0.9552  (pts=8)   means=[np.float64(0.2087), np.float64(0.1975), np.float64(0.1904), np.float64(0.1892), np.float64(0.1815), np.float64(0.1745), np.float64(0.1724), np.float64(0.1681)]
+   n>=  1000: alpha_giant=0.0250 R2=0.9598 | alpha_core=0.0251 R2=0.9604 (pts=5)
+   n>=  3000: alpha_giant=0.0209 R2=0.9625 | alpha_core=0.0211 R2=0.9606 (pts=4)
+   n>= 10000: alpha_giant=0.0163 R2=0.9704 | alpha_core=0.0163 R2=0.9704 (pts=3)
+   local alpha_giant per step: [0.0792, 0.04, 0.0091, 0.0379, 0.0327, 0.011, 0.0209]
+   alpha_giant on GEOMEAN = 0.0285 R2=0.9604
+   alpha_giant POOLED all realizations = 0.0276 R2=0.5103 (N=500)
+
+================ B. jitter n_actual vs n_target, and cutoff d_max ================
+ensemble         gamma      nt    n_mean    n_sd   ratio dmax_mean  N1/... frac2core core_dbar
+pl_dmin1           2.1     100      99.9    0.32  0.9988     19.98   64.90    0.2463     3.574
+pl_dmin1           2.1     200     200.0    0.20  0.9998     27.48  128.98    0.2546     4.027
+pl_dmin1           2.1     500     499.9    0.24  0.9999     36.44  322.78    0.2593     4.305
+pl_dmin1           2.1    1000     999.9    0.27  0.9999     42.10  646.02    0.2557     4.539
+pl_dmin1           2.1    3000    3000.0    0.14  1.0000     47.04 1940.44    0.2550     4.549
+pl_dmin1           2.1   10000   10000.0    0.20  1.0000     49.54 6461.90    0.2569     4.597
+pl_dmin1           2.5     100      99.9    0.27  0.9992     14.10   74.66    0.0906     2.591
+pl_dmin1           2.5     200     199.9    0.34  0.9996     20.64  148.72    0.1007     2.864
+pl_dmin1           2.5     500     500.0    0.00  1.0000     28.42  373.74    0.0978     3.087
+pl_dmin1           2.5    1000     999.9    0.27  0.9999     35.68  747.10    0.1060     3.249
+pl_dmin1           2.5    3000    2999.9    0.30  1.0000     42.12 2242.94    0.1042     3.244
+pl_dmin1           2.5   10000    9999.9    0.24  1.0000     47.46 7466.54    0.1048     3.286
+pl_dmin1           3.0     100     100.0    0.20  0.9996      8.80   82.56    0.0092     2.168
+pl_dmin1           3.0     200     199.9    0.38  0.9994     11.52  165.20    0.0112     2.284
+pl_dmin1           3.0     500     499.9    0.24  0.9999     17.20  414.46    0.0113     2.328
+pl_dmin1           3.0    1000     999.9    0.27  0.9999     23.10  831.16    0.0112     2.323
+pl_dmin1           3.0    3000    2999.9    0.27  1.0000     30.20 2493.98    0.0098     2.339
+pl_dmin1           3.0   10000    9999.9    0.32  1.0000     39.60 8315.28    0.0103     2.357
+pl_dmin2           2.1     100      99.8    0.37  0.9984     27.14    1.06    0.9890     4.620
+pl_dmin2           2.1     200     199.8    0.38  0.9991     34.94    0.84    0.9954     4.892
+pl_dmin2           2.1     500     499.9    0.27  0.9998     42.18    0.90    0.9980     5.043
+pl_dmin2           2.1    1000     999.9    0.30  0.9999     46.16    0.94    0.9990     5.119
+pl_dmin2           2.1    3000    2999.9    0.30  1.0000     49.00    1.06    0.9996     5.134
+pl_dmin2           2.1   10000    9999.8    0.42  1.0000     49.96    0.88    0.9999     5.159
+pl_dmin2           2.1   30000   29999.9    0.34  1.0000     50.00    1.22    1.0000     5.156
+pl_dmin2           2.1  100000   99999.9    0.27  1.0000     50.00    0.98    1.0000     5.161
+pl_dmin2           2.5     100      99.9    0.38  0.9988     22.36    1.06    0.9886     3.651
+pl_dmin2           2.5     200     199.9    0.35  0.9993     29.90    1.20    0.9936     3.799
+pl_dmin2           2.5     500     499.8    0.54  0.9996     38.20    1.02    0.9979     3.872
+pl_dmin2           2.5    1000     999.8    0.40  0.9998     43.60    1.20    0.9987     3.910
+pl_dmin2           2.5    3000    2999.9    0.30  1.0000     47.32    1.08    0.9996     3.906
+pl_dmin2           2.5   10000    9999.8    0.37  1.0000     49.48    1.28    0.9999     3.919
+pl_dmin2           2.5   30000   29999.9    0.31  1.0000     49.99    1.10    1.0000     3.915
+pl_dmin2           2.5  100000   99999.9    0.36  1.0000     50.00    1.17    1.0000     3.919
+pl_dmin2           3.0     100      99.8    0.45  0.9980     17.26    1.12    0.9872     2.995
+pl_dmin2           3.0     200     199.8    0.38  0.9991     22.48    1.28    0.9911     3.049
+pl_dmin2           3.0     500     499.9    0.35  0.9997     30.38    1.04    0.9972     3.083
+pl_dmin2           3.0    1000     999.9    0.40  0.9999     36.50    1.18    0.9986     3.099
+pl_dmin2           3.0    3000    2999.7    0.57  0.9999     42.66    0.86    0.9997     3.089
+pl_dmin2           3.0   10000    9999.7    0.49  1.0000     47.54    1.12    0.9999     3.096
+pl_dmin2           3.0   30000   29999.8    0.50  1.0000     49.57    1.15    1.0000     3.095
+pl_dmin2           3.0  100000   99999.7    0.47  1.0000     50.00    1.32    1.0000     3.097
+pl_dmin3           2.1     100     100.0    0.00  1.0000     30.16    0.18    0.9982     6.654
+pl_dmin3           2.1     200     200.0    0.00  1.0000     37.48    0.08    0.9996     7.057
+pl_dmin3           2.1     500     500.0    0.00  1.0000     44.34    0.20    0.9996     7.328
+pl_dmin3           2.1    1000    1000.0    0.00  1.0000     47.74    0.14    0.9999     7.431
+pl_dmin3           2.1    3000    3000.0    0.00  1.0000     49.54    0.10    1.0000     7.467
+pl_dmin3           2.1   10000   10000.0    0.00  1.0000     50.00    0.14    1.0000     7.500
+pl_dmin3           2.1   30000   30000.0    0.00  1.0000     50.00    0.11    1.0000     7.498
+pl_dmin3           2.1  100000  100000.0    0.00  1.0000     50.00    0.12    1.0000     7.504
+pl_dmin3           2.5     100     100.0    0.14  0.9998     27.46    0.30    0.9970     5.494
+pl_dmin3           2.5     200     200.0    0.00  1.0000     34.76    0.14    0.9993     5.760
+pl_dmin3           2.5     500     500.0    0.00  1.0000     41.88    0.22    0.9996     5.908
+pl_dmin3           2.5    1000    1000.0    0.00  1.0000     46.24    0.26    0.9997     5.974
+pl_dmin3           2.5    3000    3000.0    0.00  1.0000     48.80    0.24    0.9999     5.981
+pl_dmin3           2.5   10000   10000.0    0.00  1.0000     49.90    0.20    1.0000     6.000
+pl_dmin3           2.5   30000   30000.0    0.00  1.0000     50.00    0.18    1.0000     5.997
+pl_dmin3           2.5  100000  100000.0    0.00  1.0000     50.00    0.18    1.0000     6.002
+pl_dmin3           3.0     100     100.0    0.00  1.0000     22.10    0.42    0.9958     4.605
+pl_dmin3           3.0     200     200.0    0.00  1.0000     29.44    0.28    0.9986     4.767
+pl_dmin3           3.0     500     500.0    0.00  1.0000     36.46    0.32    0.9994     4.838
+pl_dmin3           3.0    1000    1000.0    0.00  1.0000     42.42    0.22    0.9998     4.873
+pl_dmin3           3.0    3000    3000.0    0.00  1.0000     46.52    0.18    0.9999     4.869
+pl_dmin3           3.0   10000   10000.0    0.00  1.0000     49.18    0.36    1.0000     4.880
+pl_dmin3           3.0   30000   30000.0    0.00  1.0000     49.96    0.34    1.0000     4.878
+pl_dmin3           3.0  100000  100000.0    0.00  1.0000     50.00    0.32    1.0000     4.881
+
+================ C. ER control ================
+   c    obs alpha_full      R2   a>=1000   a>=3000  a>=10000  means
+   2  giant     0.2697   0.989    0.2423    0.2234    0.2279  [np.float64(0.0291), np.float64(0.0231), np.float64(0.016), np.float64(0.0139), np.float64(0.0097), np.float64(0.0077), np.float64(0.0055), np.float64(0.0045)]
+   2   core     0.1375   0.866    0.1190    0.1367    0.1211  [np.float64(0.0622), np.float64(0.0392), np.float64(0.0321), np.float64(0.0323), np.float64(0.0314), np.float64(0.0259), np.float64(0.0218), np.float64(0.0195)]
+   3  giant     0.2059   0.983    0.2047    0.2129    0.2087  [np.float64(0.0929), np.float64(0.0629), np.float64(0.0589), np.float64(0.0505), np.float64(0.0421), np.float64(0.0322), np.float64(0.0256), np.float64(0.0199)]
+   3   core     0.0885   0.966    0.0909    0.1029    0.1089  [np.float64(0.1124), np.float64(0.094), np.float64(0.0885), np.float64(0.0846), np.float64(0.0805), np.float64(0.0714), np.float64(0.0656), np.float64(0.0556)]
+   4  giant     0.1675   0.993    0.1582    0.1588    0.1492  [np.float64(0.1566), np.float64(0.1506), np.float64(0.1263), np.float64(0.1064), np.float64(0.0906), np.float64(0.0745), np.float64(0.0595), np.float64(0.0528)]
+   4   core     0.0720   0.990    0.0641    0.0689    0.0711  [np.float64(0.1734), np.float64(0.1695), np.float64(0.1536), np.float64(0.1418), np.float64(0.1348), np.float64(0.1241), np.float64(0.1165), np.float64(0.1054)]
+
+================ D. PL vs ER matched on core mean degree ================
+PL core mean degree (2*m_core/n_core) and giant frac per gamma, all n:
+  pl_dmin1 gamma=2.1: core_dbar mean=4.265  (min 2.667, max 5.496)
+  pl_dmin1 gamma=2.5: core_dbar mean=3.061  (min 2.000, max 4.341)
+  pl_dmin1 gamma=3.0: core_dbar mean=2.323  (min 2.000, max 3.103)
+  pl_dmin2 gamma=2.1: core_dbar mean=5.060  (min 3.816, max 5.596)
+  pl_dmin2 gamma=2.5: core_dbar mean=3.873  (min 3.140, max 4.424)
+  pl_dmin2 gamma=3.0: core_dbar mean=3.080  (min 2.620, max 3.531)
+  pl_dmin3 gamma=2.1: core_dbar mean=7.344  (min 5.760, max 7.900)
+  pl_dmin3 gamma=2.5: core_dbar mean=5.912  (min 4.788, max 6.400)
+  pl_dmin3 gamma=3.0: core_dbar mean=4.835  (min 4.121, max 5.280)
+
+================ E. leaves / low-degree in erased config model ================
+N1 (observed degree-1 count) and d_min_obs distributions (they should be 0 and 2 for pl_dmin2):
+  pl_dmin1         g=2.1: mean N1= 1594.17  mean N1/n=0.64659  d_min_obs: min=1 mean=1.000  mean N2/n=0.1506
+  pl_dmin1         g=2.5: mean N1= 1842.28  mean N1/n=0.74668  d_min_obs: min=1 mean=1.000  mean N2/n=0.1324
+  pl_dmin1         g=3.0: mean N1= 2050.44  mean N1/n=0.82926  d_min_obs: min=1 mean=1.000  mean N2/n=0.1060
+  pl_dmin2         g=2.1: mean N1=    1.01  mean N1/n=0.00181  d_min_obs: min=1 mean=1.362  mean N2/n=0.4258
+  pl_dmin2         g=2.5: mean N1=    1.14  mean N1/n=0.00204  d_min_obs: min=1 mean=1.330  mean N2/n=0.5190
+  pl_dmin2         g=3.0: mean N1=    1.15  mean N1/n=0.00214  d_min_obs: min=1 mean=1.326  mean N2/n=0.6173
+  pl_dmin3         g=2.1: mean N1=    0.13  mean N1/n=0.00028  d_min_obs: min=1 mean=2.018  mean N2/n=0.0029
+  pl_dmin3         g=2.5: mean N1=    0.21  mean N1/n=0.00045  d_min_obs: min=1 mean=1.914  mean N2/n=0.0041
+  pl_dmin3         g=3.0: mean N1=    0.31  mean N1/n=0.00066  d_min_obs: min=1 mean=1.802  mean N2/n=0.0044
+
+================ F. lambda2==0 / disconnected frequency ================
+  merged: core_l2==0 193/14700 (nan 561) | giant_l2==0 0 (nan 0)
+  er: core_l2==0 5/480 (nan 0) | giant_l2==0 0 (nan 0)
+  merged n_comp>1: 4787/14700  (full graph disconnected)
+
+================ G. mean vs median vs heavy-tail (per-realization spread) ================
+
+  pl_dmin2 gamma=2.1 lambda2_giant per n: mean / median / geomean / sd / max/mean
+    n=    100: mean=0.19097 med=0.19703 geo=0.18701 sd=0.03687 max/mean=1.40 frac<head/>
+    n=    200: mean=0.18244 med=0.17932 geo=0.17936 sd=0.03300 max/mean=1.34 frac<head/>
+    n=    500: mean=0.15411 med=0.15983 geo=0.15020 sd=0.03248 max/mean=1.36 frac<head/>
+    n=   1000: mean=0.13298 med=0.13552 geo=0.13007 sd=0.02648 max/mean=1.39 frac<head/>
+    n=   3000: mean=0.11566 med=0.11643 geo=0.11409 sd=0.01854 max/mean=1.33 frac<head/>
+    n=  10000: mean=0.09535 med=0.09618 geo=0.09392 sd=0.01619 max/mean=1.32 frac<head/>
+    n=  30000: mean=0.08340 med=0.08537 geo=0.08241 sd=0.01252 max/mean=1.36 frac<head/>
+    n= 100000: mean=0.06999 med=0.06995 geo=0.06907 sd=0.01115 max/mean=1.37 frac<head/>
+
+  pl_dmin2 gamma=2.5 lambda2_giant per n: mean / median / geomean / sd / max/mean
+    n=    100: mean=0.11907 med=0.11511 geo=0.11511 sd=0.03086 max/mean=1.72 frac<head/>
+    n=    200: mean=0.10808 med=0.10706 geo=0.10441 sd=0.02774 max/mean=1.63 frac<head/>
+    n=    500: mean=0.09635 med=0.09485 geo=0.09367 sd=0.02155 max/mean=1.39 frac<head/>
+    n=   1000: mean=0.08615 med=0.09019 geo=0.08314 sd=0.02078 max/mean=1.50 frac<head/>
+    n=   3000: mean=0.07212 med=0.07177 geo=0.07050 sd=0.01494 max/mean=1.57 frac<head/>
+    n=  10000: mean=0.05659 med=0.05694 geo=0.05536 sd=0.01077 max/mean=1.31 frac<head/>
+    n=  30000: mean=0.04855 med=0.04910 geo=0.04764 sd=0.00882 max/mean=1.37 frac<head/>
+    n= 100000: mean=0.04144 med=0.04231 geo=0.04094 sd=0.00617 max/mean=1.39 frac<head/>
+
+  pl_dmin2 gamma=3.0 lambda2_giant per n: mean / median / geomean / sd / max/mean
+    n=    100: mean=0.07062 med=0.06968 geo=0.06666 sd=0.02192 max/mean=1.94 frac<head/>
+    n=    200: mean=0.06105 med=0.06394 geo=0.05817 sd=0.01754 max/mean=1.50 frac<head/>
+    n=    500: mean=0.05083 med=0.05150 geo=0.04884 sd=0.01334 max/mean=1.50 frac<head/>
+    n=   1000: mean=0.04487 med=0.04503 geo=0.04393 sd=0.00921 max/mean=1.56 frac<head/>
+    n=   3000: mean=0.03617 med=0.03638 geo=0.03552 sd=0.00672 max/mean=1.39 frac<head/>
+    n=  10000: mean=0.03119 med=0.03095 geo=0.03073 sd=0.00526 max/mean=1.38 frac<head/>
+    n=  30000: mean=0.02628 med=0.02603 geo=0.02603 sd=0.00365 max/mean=1.34 frac<head/>
+    n= 100000: mean=0.02115 med=0.02164 geo=0.02082 sd=0.00363 max/mean=1.32 frac<head/>
+
+written C:\Users\yagan\OneDrive\╨Ф╨╛╨║╤Г╨╝╨╡╨╜╤В╤Л\graf\results_agents\devils_advocate\report_data.txt
