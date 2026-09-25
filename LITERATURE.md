@@ -1,5 +1,7 @@
 # Литературная проверка новизны
 
+> 🌐 English version: [`LITERATURE.en.md`](LITERATURE.en.md)
+
 Вопрос: публиковал ли кто-нибудь наблюдаемый скейлинг
 `λ₂(normalized Laplacian, giant) ~ n^(−α)` при α ≈ 0.15…0.17
 для power-law конфигурационной модели с **min degree 2** (d_max = 50).
