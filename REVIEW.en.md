@@ -132,6 +132,26 @@ logarithm. Caveat: β<2 (not yet the exact `(ln N)^{−2}`), and at n=10⁶ ther
 **Bottom line:** the core of 2008 (min degree → edge) is **confirmed**; the finite α is
 effective, the asymptotic is logarithmic. **No novelty**, but the picture is closed.
 
+### 3.8. Why the "normalized vs combinatorial" difference does NOT yield a result
+
+**Observation.** The combinatorial λ₂ decays slightly faster than the normalized one
+(α_comb ≈ 0.19–0.21 vs α_norm ≈ 0.15–0.19, n=100…10⁴). The ratio `λ_comb/λ_norm`
+**decreases slowly**: γ=2.1 2.48→2.07; γ=2.5 2.39→2.07; γ=3.0 2.23→2.04.
+
+**Interpretation.** This is a **finite-size normalization effect**, not a qualitative
+difference:
+- both decay (both are a min-degree-≤2 phenomenon); the `q_m>2` criterion is common;
+- the ratio decreases slowly (not `~ n^α`), i.e. a rescaling, not a new law;
+- asymptotics up to n=10⁶: α **decreases**; the log form `A(ln n)^{−β}` (β≈1.2–1.33)
+  is preferred in **3 of 4** cases (exception: d2 γ=2.5 — noisy, reps=5).
+
+**Consequence.** The difference lies in the **effective finite-size exponent** due to
+normalization; the qualitative conclusion of Samukhin 2008 (the role of min degree)
+applies to the normalized Laplacian as well. A strict derivation for the normalized case
+remains open (§9.5), but the expected result is a **confirmation, not novelty**.
+
+**Bottom line:** no novelty — **confirmed experimentally** (n up to 10⁶), not assumed.
+
 ---
 
 ## 4. Verification by independent agents
