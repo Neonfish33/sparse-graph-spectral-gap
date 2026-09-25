@@ -45,11 +45,14 @@ python compare_laplacians.py                   # normalized vs combinatorial λ�
 
 ## Documentation
 
-- [`REVIEW.md`](REVIEW.md) — full summary, findings, open questions *(RU)*.
-- [`LITERATURE.md`](LITERATURE.md) — literature check and why there is no novelty *(RU)*.
-- [`CHANGELOG.md`](CHANGELOG.md) — change history *(RU)*.
-- [`TOY_MODEL.md`](TOY_MODEL.md) — toy-model design *(RU)*.
-- [`README.ru.md`](README.ru.md) — detailed Russian project notes.
+Each document exists in English (`*.en.md`) and Russian. The **Russian originals are
+authoritative**; the English ones are translations.
+
+- [`REVIEW.en.md`](REVIEW.en.md) / [`REVIEW.md`](REVIEW.md) — full summary, findings, open questions.
+- [`LITERATURE.en.md`](LITERATURE.en.md) / [`LITERATURE.md`](LITERATURE.md) — literature check; why there is no novelty.
+- [`CHANGELOG.en.md`](CHANGELOG.en.md) / [`CHANGELOG.md`](CHANGELOG.md) — change history.
+- [`TOY_MODEL.en.md`](TOY_MODEL.en.md) / [`TOY_MODEL.md`](TOY_MODEL.md) — toy-model design.
+- [`README.ru.md`](README.ru.md) — detailed Russian project notes (this `README.md` is the English landing page).
 
 ## License
 
